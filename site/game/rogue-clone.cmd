@@ -1,7 +1,7 @@
 @echo off
 
 set "ROGUEOPTS=noPCgraphics,name:skywind,passgo"
-set "ROGUEHOME=%USERPROFILE%\_rogue-clone\rogue-clone"
+set "ROGUEHOME=%USERPROFILE%\.local\share\rogue-clone"
 
 md "%ROGUEHOME%" 2> nul
 pushd "%ROGUEHOME%"
