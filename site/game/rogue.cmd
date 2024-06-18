@@ -15,6 +15,7 @@ goto exit
 call "%~dp0rogue.exe" skywind.sav
 
 :exit
+cd /d "%USERPROFILE%"
 popd
 echo.
 

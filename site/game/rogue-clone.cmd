@@ -15,6 +15,7 @@ goto exit
 call "%~dp0rogue-clone.exe" "rogue.save"
 
 :exit
+cd /d "%USERPROFILE%"
 popd
 echo.
 
