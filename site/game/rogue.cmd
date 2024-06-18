@@ -1,14 +1,10 @@
 @echo off
 
-set "ROGUEOPTS=noPCgraphics,name:skywind"
+set "ROGUEOPTS=noPCgraphics,passgo,name:skywind"
+set "ROGUEHOME=%USERPROFILE%\.local\share\rogue"
 
-cd /D "%~dp0"
-cd /D "%USERPROFILE%"
-cd
-
-md "%USERPROFILE%\.config\rogue" 2> nul
-cd .config
-cd rogue
+md "%ROGUEHOME%" 2> nul
+pushd "%ROGUEHOME%"
 
 if exist "skywind.sav" goto load_save
 
@@ -19,6 +15,7 @@ goto exit
 call "%~dp0rogue.exe" skywind.sav
 
 :exit
+popd
 echo.
 
 
