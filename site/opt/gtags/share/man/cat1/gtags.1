@@ -261,6 +261,22 @@ GTAGS(1)                    General Commands Manual                   GTAGS(1)
               Skip   list   is   also   effective  when  you  use  the  [1m-f  [22mor
               'gtags.files'.
 
+[1mEXAMPLES[0m
+       #
+       # There are several ways to use Universal Ctags plug-in parser.
+       #
+       $ gtags --gtagsconf=/usr/local/share/gtags/gtags.conf --gtagslabel=universal-ctags
+       $ gtags --explain
+       or
+       $ export GTAGSCONF=/usr/local/share/gtags/gtags.conf
+       $ export GTAGSLABEL=universal-ctags
+       $ gtags --explain
+       or
+       # In your project
+       $ cp /usr/local/share/gtags/gtags.conf .
+       $ vi gtags.conf          # default:tc=native => default:tc=universal-ctags
+       $ gtags --explain
+
 [1mDIAGNOSTICS[0m
        [1mGtags [22mexits with a non-0 value if an error occurred, 0 otherwise.
 

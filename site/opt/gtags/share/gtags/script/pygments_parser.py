@@ -27,7 +27,7 @@ import optparse
 import pygments.lexers
 from pygments.token import Token
 
-EXUBERANT_CTAGS = "ctags"
+UNIVERSAL_CTAGS = "ctags"
 
 # In most cases, lexers can be looked up with lowercase form of formal
 # language names. This dictionary defines exceptions.
@@ -139,7 +139,7 @@ class PygmentsParser:
 
 class CtagsParser:
     def __init__(self, ctags_command, options):
-        self.process = subprocess.Popen([ctags_command, '-xu', '--filter', '--filter-terminator=' + TERMINATOR, '--format=1'], bufsize=-1,
+        self.process = subprocess.Popen([ctags_command, '-xu', '--tag-relative=no', '--filter', '--filter-terminator=' + TERMINATOR, '--format=1'], bufsize=-1,
                                         stdin=subprocess.PIPE, stdout=subprocess.PIPE, close_fds=CLOSEFDS,
                                         universal_newlines=True)
         if sys.version_info < (3,):
@@ -200,14 +200,14 @@ def parse_langmap(string):
 
 def handle_requests(langmap, options):
     # Update ctags's path from the configuration file
-    global EXUBERANT_CTAGS
+    global UNIVERSAL_CTAGS
     path = load_ctags_path()
     if path != '':
-       EXUBERANT_CTAGS = path
-    if EXUBERANT_CTAGS != '' and EXUBERANT_CTAGS != 'no':
+       UNIVERSAL_CTAGS = path
+    if UNIVERSAL_CTAGS != '' and UNIVERSAL_CTAGS != 'no':
         pygments_parser = PygmentsParser(langmap, options)
         try:
-            ctags_parser = CtagsParser(EXUBERANT_CTAGS, options)
+            ctags_parser = CtagsParser(UNIVERSAL_CTAGS, options)
             parser = MergingParser(ctags_parser, pygments_parser)
         except Exception as e:
             parser = pygments_parser
